@@ -1,0 +1,6 @@
+services:
+  graph_ql:
+    container_name: graph_ql
+    build: .
+    ports:
+      - "8000:8000"
