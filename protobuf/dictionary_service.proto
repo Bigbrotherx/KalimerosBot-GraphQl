@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service DictionaryService {
+    rpc AddWord (AddWordRequest) returns (AddWordResponse);
+}
+
+message AddWordRequest {
+    string user_id = 1;
+    string word = 2;
+    string translation = 3;
+}
+
+message AddWordResponse {
+    int32 status_code = 1;
+    string message = 2;
+}

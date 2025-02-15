@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 from typing import Union, Annotated
+from fastapi import status
 
 import strawberry
 from auth0 import Auth0Error
@@ -7,6 +7,10 @@ from strawberry import Info
 
 from context import Context, User
 from utils import oauth_handler, authorized_only
+from config import get_settings, get_dictionary_service_channel
+from protobuf import dictionary_service_pb2, dictionary_service_pb2_grpc
+
+SETTINGS = get_settings()
 
 
 # noinspection PyArgumentList
@@ -100,7 +104,16 @@ class Mutation:
     @authorized_only
     def add_word(self, info: Info[Context],
                  new_word: DictionaryInput) -> AddWordResult:
-        return SuccessResponse(message="Word added successfully")
+        with get_dictionary_service_channel() as channel:
+            stub = dictionary_service_pb2_grpc.DictionaryServiceStub(channel)
+            response = stub.AddWord(
+                dictionary_service_pb2.AddWordRequest(
+                    user_id=info.context.user.id,
+                    word=new_word.word,
+                    translation=new_word.translation))
+            if response.status_code == status.HTTP_200_OK:
+                return SuccessResponse(message="Word added successfully")
+        return ErrorResponse(error=repr(response))
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
