@@ -4,3 +4,16 @@ services:
     build: .
     ports:
       - "8000:8000"
+    networks:
+      - my_network
+
+
+  dictionary_service:
+    image: ruzzik/kalimeros_dictionary:latest
+    container_name: dictionary_service
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
