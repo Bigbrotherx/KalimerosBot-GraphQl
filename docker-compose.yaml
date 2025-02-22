@@ -13,7 +13,27 @@ services:
     container_name: dictionary_service
     networks:
       - my_network
+    depends_on:
+      - db_dict
+
+  db_dict:
+    image: postgres:15
+    container_name: dictionary_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dictionary
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_dict:/var/lib/postgresql/data
+    networks:
+      - my_network
 
 networks:
   my_network:
     driver: bridge
+
+volumes:
+  pgdata_dict:

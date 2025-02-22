@@ -1,5 +1,4 @@
 import contextlib
-import dataclasses
 from functools import lru_cache
 
 import grpc

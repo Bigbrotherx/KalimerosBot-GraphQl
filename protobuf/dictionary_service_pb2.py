@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!protobuf/dictionary_service.proto\"D\n\x0e\x41\x64\x64WordRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0c\n\x04word\x18\x02 \x01(\t\x12\x13\n\x0btranslation\x18\x03 \x01(\t\"&\n\x0f\x41\x64\x64WordResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x32\x41\n\x11\x44ictionaryService\x12,\n\x07\x41\x64\x64Word\x12\x0f.AddWordRequest\x1a\x10.AddWordResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!protobuf/dictionary_service.proto\"D\n\x0e\x41\x64\x64WordRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0c\n\x04word\x18\x02 \x01(\t\x12\x13\n\x0btranslation\x18\x03 \x01(\t\"7\n\x0f\x41\x64\x64WordResponse\x12\x13\n\x0bstatus_code\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t2A\n\x11\x44ictionaryService\x12,\n\x07\x41\x64\x64Word\x12\x0f.AddWordRequest\x1a\x10.AddWordResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,7 +34,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ADDWORDREQUEST']._serialized_start=37
   _globals['_ADDWORDREQUEST']._serialized_end=105
   _globals['_ADDWORDRESPONSE']._serialized_start=107
-  _globals['_ADDWORDRESPONSE']._serialized_end=145
-  _globals['_DICTIONARYSERVICE']._serialized_start=147
-  _globals['_DICTIONARYSERVICE']._serialized_end=212
+  _globals['_ADDWORDRESPONSE']._serialized_end=162
+  _globals['_DICTIONARYSERVICE']._serialized_start=164
+  _globals['_DICTIONARYSERVICE']._serialized_end=229
 # @@protoc_insertion_point(module_scope)

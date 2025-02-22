@@ -112,8 +112,8 @@ class Mutation:
                     word=new_word.word,
                     translation=new_word.translation))
             if response.status_code == status.HTTP_200_OK:
-                return SuccessResponse(message="Word added successfully")
-        return ErrorResponse(error=repr(response))
+                return SuccessResponse(message=response.message)
+        return ErrorResponse(error=response.message)
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
