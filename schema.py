@@ -1,5 +1,4 @@
-from collections import defaultdict
-from typing import Union, Annotated
+from typing import Union, Annotated, Optional
 from fastapi import status
 
 import strawberry
@@ -31,7 +30,7 @@ user_progress = {}
 @strawberry.input
 class DictionaryInput:
     word: str
-    translation: str
+    translation: Optional[str] = None
 
 
 @strawberry.input
