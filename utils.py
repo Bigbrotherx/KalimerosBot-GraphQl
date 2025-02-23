@@ -1,4 +1,6 @@
+import enum
 import functools
+import re
 
 from auth0 import Auth0Error
 from auth0.authentication import GetToken, Database, Users
@@ -64,3 +66,22 @@ class HandleToken:
 
 
 oauth_handler = HandleToken()
+
+
+class Language(enum.Enum):
+    RUS = 'rus'
+    GREEK = 'greek'
+    OTHER = 'other'
+
+
+LANG_MAPPING = {
+    Language.RUS: re.compile(r"^[а-яё]+$", re.IGNORECASE),
+    Language.GREEK: re.compile(r"^[α-ωάέήίόύώ]+$", re.IGNORECASE)
+}
+
+
+def detect_language(text: str) -> Language:
+    for lang, pattern in LANG_MAPPING.items():
+        if pattern.match(text):
+            return lang
+    return Language.OTHER
